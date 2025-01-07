@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ownerSchema = new mongoose.Schema({
-  account_id: { type: Number, unique: true, required: true },
-  reputation: { type: Number, required: true },
-  user_id: { type: Number, unique: true, required: true },
+  account_id: { type: Number, unique: true },
+  reputation: { type: Number },
+  user_id: { type: Number, unique: true },
   user_type: { type: String, required: true },
   accept_rate: { type: Number },
   profile_image: { type: String },
