@@ -3,6 +3,7 @@ import connectDatabase from "./database/db.js"
 import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import {fetchAndSaveQuestions} from "./controllers/questionLoad.controller.js"
 
 
 const server = express();
@@ -32,9 +33,14 @@ server.get("/", (_, res) => {
 
 connectDatabase()
 .then(() => {
-    server.listen(process.env.PORT || 5000, () => {
-        console.log(`Server is running at port : ${process.env.PORT}`);
-    })
+    try{
+        server.listen(process.env.PORT || 5000, () => {
+            console.log(`Server is running at port : ${process.env.PORT || 5000}`);
+        })
+    }
+    catch(error){
+        console.log("Server Error", error);
+    }
 })
 .catch((err) => {
     console.log("MongoDB connection failed !!!", err);
@@ -46,11 +52,3 @@ server.use(express.urlencoded({extended: true, limit: "16kb"}));
 server.use(express.static("public"))
 server.use(cookieParser());
 
-
-
-import userRoutes from "./routes/user.routes.js"
-import employeeRouter from "./routes/employee.routes.js"
-
-
-server.use("/api/users", userRoutes)
-server.use("/api/employees", employeeRouter);
