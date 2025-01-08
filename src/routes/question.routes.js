@@ -6,7 +6,7 @@ const router = Router();
 router.post("/", createQuestion);
 router.get("/", fetchQuestion);
 router.get("/:id", getQuestionById);
-router.put("/", updateQuestion)
-router.delete("/", deleteQuestion)
+router.put("/:id", updateQuestion)
+router.delete("/:id", deleteQuestion)
 
 export default router;
