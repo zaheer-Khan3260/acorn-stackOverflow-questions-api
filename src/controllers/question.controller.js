@@ -180,8 +180,15 @@ export const getQuestionById = asyncHandler(async (req, res) => {
       })
     );
   } catch (error) {
-    console.error("Error fetching question:", error);
-    res.status(500).json(
+    
+    error.message == "Question not found" ? res.status(404).json(
+      new ApiResponse({
+        status: 404,
+        success: false,
+        message: "Question not found",
+      })) 
+      : 
+      res.status(500).json(
       new ApiResponse({
         status: 500,
         success: false,
