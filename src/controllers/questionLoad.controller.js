@@ -10,7 +10,7 @@ export async function fetchAndSaveQuestions() {
     const response = await axios.get(process.env.STACKOVERFLOW_API_URL, {
       params: {
         order: "desc",
-        sort: "activity",
+        sort: "hot",
         site: "stackoverflow",
         pagesize: 100,
       }
