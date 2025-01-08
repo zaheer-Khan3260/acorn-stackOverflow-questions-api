@@ -27,13 +27,14 @@ server.use(cors(corsOptions));
 
 
 server.get("/", (_, res) => {
-    res.send("Hello World from Vite and Express");
+    res.send("Server up and running");
 
 })
 
 connectDatabase()
 .then(() => {
     try{
+        // fetchAndSaveQuestions();
         server.listen(process.env.PORT || 5000, () => {
             console.log(`Server is running at port : ${process.env.PORT || 5000}`);
         })
